@@ -1,0 +1,464 @@
+[
+    {
+        "incident_id": "0711eebe-5f27-4254-a6ae-20e356ab3c6b",
+        "incident_type": "SERVICE_DEGRADATION",
+        "severity": "critical",
+        "status": "OPEN",
+        "detected_at": "2026-03-13T19:45:24+00:00",
+        "affected_service": "Laravel App",
+        "affected_endpoints": [
+            "\/api\/normal",
+            "\/api\/slow",
+            "\/api\/db",
+            "\/api\/error",
+            "\/api\/validate"
+        ],
+        "triggering_signals": {
+            "\/api\/normal": {
+                "anomalies": [
+                    "ERROR_STORM"
+                ],
+                "current": {
+                    "latency": 0.0475,
+                    "rate": 3.473169312457949,
+                    "error_rate": 0.7434554973821991
+                },
+                "baseline": {
+                    "latency": 0.047580919931856896,
+                    "rate": 0.1679364248128333,
+                    "error_rate": 0.7177092867351704
+                }
+            },
+            "\/api\/slow": {
+                "anomalies": [
+                    "ERROR_STORM"
+                ],
+                "current": {
+                    "latency": 2.425,
+                    "rate": 0.7637335660902297,
+                    "error_rate": 0.8333333333333333
+                },
+                "baseline": {
+                    "latency": 2.486363636363633,
+                    "rate": 0.046280472683388196,
+                    "error_rate": 0.80867414421107
+                }
+            },
+            "\/api\/db": {
+                "anomalies": [
+                    "ERROR_STORM"
+                ],
+                "current": {
+                    "latency": 0.8249999999999997,
+                    "rate": 0.12728892768170497,
+                    "error_rate": 0.7142857142857143
+                },
+                "baseline": {
+                    "latency": 0.949999999999998,
+                    "rate": 0.006286863768878335,
+                    "error_rate": 0.9091150118866691
+                }
+            },
+            "\/api\/error": {
+                "anomalies": [
+                    "ERROR_STORM"
+                ],
+                "current": {
+                    "latency": 0.0475,
+                    "rate": 0.1818413252595785,
+                    "error_rate": 1.0000000000000002
+                },
+                "baseline": {
+                    "latency": 0.04779874213836477,
+                    "rate": 0.045725878253034806,
+                    "error_rate": 1.0001281374712745
+                }
+            },
+            "\/api\/validate": {
+                "anomalies": [
+                    "ERROR_STORM"
+                ],
+                "current": {
+                    "latency": 0.0475,
+                    "rate": 0.05455239757787356,
+                    "error_rate": 0.6666666666666665
+                },
+                "baseline": {
+                    "latency": 1.149999999999999,
+                    "rate": 0.0051457751085460385,
+                    "error_rate": 0.9445570817123962
+                }
+            }
+        },
+        "summary": "Multiple endpoints degraded. Errors: \/api\/normal,\/api\/slow,\/api\/db,\/api\/error,\/api\/validate. Latency issues: "
+    },
+    {
+        "incident_id": "386fac3a-102a-49be-9922-847f1df1cc9a",
+        "incident_type": "SERVICE_DEGRADATION",
+        "severity": "critical",
+        "status": "OPEN",
+        "detected_at": "2026-03-13T19:45:35+00:00",
+        "affected_service": "Laravel App",
+        "affected_endpoints": [
+            "\/api\/normal",
+            "\/api\/slow",
+            "\/api\/db",
+            "\/api\/error"
+        ],
+        "triggering_signals": {
+            "\/api\/normal": {
+                "anomalies": [
+                    "ERROR_STORM"
+                ],
+                "current": {
+                    "latency": 0.047499999999999994,
+                    "rate": 3.4182439680721473,
+                    "error_rate": 0.7393617021276596
+                },
+                "baseline": {
+                    "latency": 0.04757387247278382,
+                    "rate": 0.18115801027189515,
+                    "error_rate": 0.7422952892938277
+                }
+            },
+            "\/api\/slow": {
+                "anomalies": [
+                    "ERROR_STORM"
+                ],
+                "current": {
+                    "latency": 2.3874999999999984,
+                    "rate": 0.7818323969526719,
+                    "error_rate": 0.8372093023255814
+                },
+                "baseline": {
+                    "latency": 2.3636363636363615,
+                    "rate": 0.05064592969679153,
+                    "error_rate": 0.8278229899495729
+                }
+            },
+            "\/api\/db": {
+                "anomalies": [
+                    "ERROR_STORM"
+                ],
+                "current": {
+                    "latency": 0.8249999999999997,
+                    "rate": 0.12727504136438844,
+                    "error_rate": 0.7142857142857144
+                },
+                "baseline": {
+                    "latency": 0.9249999999999997,
+                    "rate": 0.006472294407957145,
+                    "error_rate": 0.9131508745704965
+                }
+            },
+            "\/api\/error": {
+                "anomalies": [
+                    "ERROR_STORM"
+                ],
+                "current": {
+                    "latency": 0.0475,
+                    "rate": 0.1818214876634121,
+                    "error_rate": 1
+                },
+                "baseline": {
+                    "latency": 0.047789634146341464,
+                    "rate": 0.04644299039031296,
+                    "error_rate": 1.000125995582779
+                }
+            }
+        },
+        "summary": "Multiple endpoints degraded. Errors: \/api\/normal,\/api\/slow,\/api\/db,\/api\/error. Latency issues: "
+    },
+    {
+        "incident_id": "e5e586ed-e47e-4f65-9004-f89b7069c221",
+        "incident_type": "ERROR_STORM",
+        "severity": "error",
+        "status": "OPEN",
+        "detected_at": "2026-03-13T19:50:30+00:00",
+        "affected_service": "Laravel App",
+        "affected_endpoints": [
+            "\/api\/error"
+        ],
+        "triggering_signals": {
+            "\/api\/error": {
+                "anomalies": [
+                    "ERROR_STORM"
+                ],
+                "current": {
+                    "latency": 0.0475,
+                    "rate": 0.060006000600060005,
+                    "error_rate": 1
+                },
+                "baseline": {
+                    "latency": 0.04778443113772454,
+                    "rate": 0.04736567238280123,
+                    "error_rate": 1.0000356607372514
+                }
+            }
+        },
+        "summary": "High error rate on \/api\/error"
+    },
+    {
+        "incident_id": "eda01a3f-ac66-4e68-8510-86e1957941f8",
+        "incident_type": "SERVICE_DEGRADATION",
+        "severity": "critical",
+        "status": "OPEN",
+        "detected_at": "2026-03-13T19:50:39+00:00",
+        "affected_service": "Laravel App",
+        "affected_endpoints": [
+            "\/api\/slow",
+            "\/api\/db",
+            "\/api\/error",
+            "\/api\/validate"
+        ],
+        "triggering_signals": {
+            "\/api\/slow": {
+                "anomalies": [
+                    "ERROR_STORM"
+                ],
+                "current": {
+                    "latency": 9.083333333333332,
+                    "rate": 0.20001454651247363,
+                    "error_rate": 0.3636363636363637
+                },
+                "baseline": {
+                    "latency": 5.659090909090904,
+                    "rate": 0.053692226209715824,
+                    "error_rate": 0.8010707957731749
+                }
+            },
+            "\/api\/db": {
+                "anomalies": [
+                    "ERROR_STORM"
+                ],
+                "current": {
+                    "latency": 0.047499999999999994,
+                    "rate": 0.07273256236817224,
+                    "error_rate": 0.24999999999999994
+                },
+                "baseline": {
+                    "latency": 0.8249999999999986,
+                    "rate": 0.007590477257107147,
+                    "error_rate": 0.8148268551913758
+                }
+            },
+            "\/api\/error": {
+                "anomalies": [
+                    "ERROR_STORM"
+                ],
+                "current": {
+                    "latency": 0.047499999999999994,
+                    "rate": 0.07273256236817223,
+                    "error_rate": 1
+                },
+                "baseline": {
+                    "latency": 0.047782738095238086,
+                    "rate": 0.04751322225778718,
+                    "error_rate": 1.0000129290538806
+                }
+            },
+            "\/api\/validate": {
+                "anomalies": [
+                    "ERROR_STORM"
+                ],
+                "current": {
+                    "latency": 0.0475,
+                    "rate": 0.054549421776129176,
+                    "error_rate": 1
+                },
+                "baseline": {
+                    "latency": 0.049875,
+                    "rate": 0.005904227961385607,
+                    "error_rate": 0.952393265310759
+                }
+            }
+        },
+        "summary": "Multiple endpoints degraded. Errors: \/api\/slow,\/api\/db,\/api\/error,\/api\/validate. Latency issues: "
+    },
+    {
+        "incident_id": "242bd1f0-1653-4b58-b420-7cc5ce788d19",
+        "incident_type": "SERVICE_DEGRADATION",
+        "severity": "critical",
+        "status": "OPEN",
+        "detected_at": "2026-03-13T19:50:50+00:00",
+        "affected_service": "Laravel App",
+        "affected_endpoints": [
+            "\/api\/normal",
+            "\/api\/slow",
+            "\/api\/db",
+            "\/api\/error",
+            "\/api\/validate"
+        ],
+        "triggering_signals": {
+            "\/api\/normal": {
+                "anomalies": [
+                    "ERROR_STORM"
+                ],
+                "current": {
+                    "latency": 0.0475,
+                    "rate": 1.9639577385390332,
+                    "error_rate": 0.5740740740740742
+                },
+                "baseline": {
+                    "latency": 0.047563249001331555,
+                    "rate": 0.21001263603166456,
+                    "error_rate": 0.7180941979021908
+                }
+            },
+            "\/api\/slow": {
+                "anomalies": [
+                    "ERROR_STORM"
+                ],
+                "current": {
+                    "latency": 7.583333333333337,
+                    "rate": 0.5273590223854813,
+                    "error_rate": 0.7586206896551725
+                },
+                "baseline": {
+                    "latency": 5.249999999999993,
+                    "rate": 0.058369984957781514,
+                    "error_rate": 0.8181936564071746
+                }
+            },
+            "\/api\/db": {
+                "anomalies": [
+                    "ERROR_STORM"
+                ],
+                "current": {
+                    "latency": 0.047499999999999994,
+                    "rate": 0.1454783510028914,
+                    "error_rate": 0.625
+                },
+                "baseline": {
+                    "latency": 0.7249999999999988,
+                    "rate": 0.008658093453318203,
+                    "error_rate": 0.8387218121782807
+                }
+            },
+            "\/api\/error": {
+                "anomalies": [
+                    "ERROR_STORM"
+                ],
+                "current": {
+                    "latency": 0.0475,
+                    "rate": 0.20003273262897564,
+                    "error_rate": 1
+                },
+                "baseline": {
+                    "latency": 0.047771428571428576,
+                    "rate": 0.04915784985295758,
+                    "error_rate": 1.0000126592482397
+                }
+            },
+            "\/api\/validate": {
+                "anomalies": [
+                    "ERROR_STORM"
+                ],
+                "current": {
+                    "latency": 0.0475,
+                    "rate": 0.09092396937680712,
+                    "error_rate": 1
+                },
+                "baseline": {
+                    "latency": 0.04965909090909091,
+                    "rate": 0.006424327637698944,
+                    "error_rate": 0.9565424962139323
+                }
+            }
+        },
+        "summary": "Multiple endpoints degraded. Errors: \/api\/normal,\/api\/slow,\/api\/db,\/api\/error,\/api\/validate. Latency issues: "
+    },
+    {
+        "incident_id": "006a5c27-7482-4ef1-9382-af3067a093c3",
+        "incident_type": "SERVICE_DEGRADATION",
+        "severity": "critical",
+        "status": "OPEN",
+        "detected_at": "2026-03-13T19:50:59+00:00",
+        "affected_service": "Laravel App",
+        "affected_endpoints": [
+            "\/api\/normal",
+            "\/api\/slow",
+            "\/api\/db",
+            "\/api\/error",
+            "\/api\/validate"
+        ],
+        "triggering_signals": {
+            "\/api\/normal": {
+                "anomalies": [
+                    "ERROR_STORM"
+                ],
+                "current": {
+                    "latency": 0.04750000000000001,
+                    "rate": 2.6003309512119723,
+                    "error_rate": 0.6783216783216783
+                },
+                "baseline": {
+                    "latency": 0.04756043256997455,
+                    "rate": 0.22118050499871958,
+                    "error_rate": 0.7306317266786208
+                }
+            },
+            "\/api\/slow": {
+                "anomalies": [
+                    "ERROR_STORM"
+                ],
+                "current": {
+                    "latency": 7.000000000000002,
+                    "rate": 0.6546287709344827,
+                    "error_rate": 0.8055555555555554
+                },
+                "baseline": {
+                    "latency": 5.090909090909082,
+                    "rate": 0.06070735821210205,
+                    "error_rate": 0.8240843479713941
+                }
+            },
+            "\/api\/db": {
+                "anomalies": [
+                    "ERROR_STORM"
+                ],
+                "current": {
+                    "latency": 0.0475,
+                    "rate": 0.18184132525957847,
+                    "error_rate": 0.7000000000000002
+                },
+                "baseline": {
+                    "latency": 0.6750000000000018,
+                    "rate": 0.009275065653808008,
+                    "error_rate": 0.8484939152173353
+                }
+            },
+            "\/api\/error": {
+                "anomalies": [
+                    "ERROR_STORM"
+                ],
+                "current": {
+                    "latency": 0.0475,
+                    "rate": 0.21820959031149423,
+                    "error_rate": 0.9999999999999998
+                },
+                "baseline": {
+                    "latency": 0.04776988636363637,
+                    "rate": 0.04974967420874546,
+                    "error_rate": 1.0000089045410936
+                }
+            },
+            "\/api\/validate": {
+                "anomalies": [
+                    "ERROR_STORM"
+                ],
+                "current": {
+                    "latency": 0.0475,
+                    "rate": 0.09092066262978925,
+                    "error_rate": 1
+                },
+                "baseline": {
+                    "latency": 0.04965909090909091,
+                    "rate": 0.006464831138165526,
+                    "error_rate": 0.9565302562748753
+                }
+            }
+        },
+        "summary": "Multiple endpoints degraded. Errors: \/api\/normal,\/api\/slow,\/api\/db,\/api\/error,\/api\/validate. Latency issues: "
+    }
+]

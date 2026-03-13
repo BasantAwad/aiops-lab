@@ -37,9 +37,9 @@ ANOMALY_DISTRIBUTION = {
 }
 
 # ── Timing config ────────────────────────────────────────────────
-BASE_DURATION_SECONDS    = 8 * 60    # 8 minutes base load
-ANOMALY_DURATION_SECONDS = 2 * 60    # Exactly 2 minutes anomaly window
-POST_ANOMALY_SECONDS     = 2 * 60    # 2 minutes post-anomaly (back to normal)
+BASE_DURATION_SECONDS    = 1 * 60    # 1 minute base load
+ANOMALY_DURATION_SECONDS = 1 * 60    # 1 minute anomaly window
+POST_ANOMALY_SECONDS     = 1 * 60    # 1 minute post-anomaly
 TOTAL_MIN_REQUESTS       = 3000
 TARGET_RPS               = 6         # Requests dispatched per second
 MAX_WORKERS              = 15        # Concurrent threads for slow requests

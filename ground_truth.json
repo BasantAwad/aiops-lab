@@ -1,6 +1,6 @@
 {
-  "anomaly_start_iso": "2026-03-09T21:22:37.728754+00:00",
-  "anomaly_end_iso": "2026-03-09T21:25:33.632083+00:00",
+  "anomaly_start_iso": "2026-03-13T19:43:16.674484+00:00",
+  "anomaly_end_iso": "2026-03-13T19:44:21.884623+00:00",
   "anomaly_type": "error_spike",
   "expected_behavior": "Error rate on /api/error increased from ~5% to ~40% of all traffic. This should be visible as a sharp spike in the error rate panel and in the error category breakdown (SYSTEM_ERROR). The anomaly window lasts exactly 2 minutes."
 }
