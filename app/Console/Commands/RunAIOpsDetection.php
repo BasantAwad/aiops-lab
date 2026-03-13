@@ -7,6 +7,15 @@ use App\Services\PrometheusClient;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
+/**
+ * ============================================================================
+ * [LAB WORK 2] - AIOps Detection Engine
+ * This artisan command acts as the central intelligence engine. It continuously
+ * polls Prometheus metrics every 20-30 seconds, applies rule-based anomaly
+ * detection (latency spikes, error thresholds, traffic surges), and correlates
+ * these metrics into structured incident JSON documents (incidents.json).
+ * ============================================================================
+ */
 class RunAIOpsDetection extends Command
 {
     /**

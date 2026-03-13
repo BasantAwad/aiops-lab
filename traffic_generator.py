@@ -8,6 +8,16 @@ Outputs: ground_truth.json
 """
 
 import requests
+import time
+import random
+
+# ============================================================================
+# [LAB WORK 1] - Telemetry Generation
+# This script is part of Lab 1. It simulates various types of API traffic
+# (normal load, slow endpoints, database queries, and error spikes) to generate
+# the raw telemetry (logs and metrics) that will be analyzed in Labs 2 and 3.
+# ============================================================================
+
 import random
 import time
 import json

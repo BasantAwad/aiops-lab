@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
-Export structured logs from storage/logs/aiops.log to logs.json.
-Validates schema consistency and counts.
+# ============================================================================
+# [LAB WORK 3] - ML Anomaly Detection
+# This script extracts structured JSON logs from the Laravel standard storage
+# (storage/logs/aiops.log) and validates that the >=1500 logs requirement is met.
+# ============================================================================
 """
 
 import json

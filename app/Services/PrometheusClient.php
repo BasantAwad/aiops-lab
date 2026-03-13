@@ -5,6 +5,14 @@ namespace App\Services;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
+/**
+ * ============================================================================
+ * [LAB WORK 2] - Prometheus Metrics Integration
+ * This service class is responsible for querying the Prometheus TSDB via its
+ * HTTP API. It is used by the AIOps Detection Engine command to pull metric
+ * summaries for rule evaluation and anomaly detection.
+ * ============================================================================
+ */
 class PrometheusClient
 {
     protected string $baseUrl;

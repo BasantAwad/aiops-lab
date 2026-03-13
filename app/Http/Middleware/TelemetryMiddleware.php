@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Exceptions\Handler;
 
+/**
+ * ============================================================================
+ * [LAB WORK 1] - Telemetry Generation
+ * This middleware is the core of Lab 1. It intercepts incoming HTTP requests,
+ * generates a Correlation ID, calculates latency, categorizes errors,
+ * writes structured JSON logs to storage/logs/aiops.log, and records
+ * Prometheus metrics (counters and histograms).
+ * ============================================================================
+ */
 class TelemetryMiddleware
 {
     public function handle(Request $request, Closure $next)
