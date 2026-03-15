@@ -10,12 +10,20 @@ class OrderController extends Controller
 {
     // This is the last lab "lab3,4"
 
+    /**
+     * GET /api/v1/orders
+     * Retrieves a paginated list of all orders.
+     */
     public function index()
     {
         $orders = Order::paginate(10);
         return response()->json($orders, 200);
     }
 
+    /**
+     * GET /api/v1/orders/{id}
+     * Retrieves a single order by its ID.
+     */
     public function show($id)
     {
         $order = Order::find($id);
@@ -27,8 +35,13 @@ class OrderController extends Controller
         return response()->json($order, 200);
     }
 
+    /**
+     * POST /api/v1/orders
+     * Creates a new order.
+     */
     public function store(Request $request)
     {
+        // Validate the incoming JSON payload
         $validatedData = $request->validate([
             'customer_name' => 'required|string|max:255',
             'amount' => 'required|numeric|min:0.01',
@@ -43,6 +56,10 @@ class OrderController extends Controller
         return response()->json($order, 201);
     }
 
+    /**
+     * PUT /api/v1/orders/{id}
+     * Updates an existing order.
+     */
     public function update(Request $request, $id)
     {
         $order = Order::find($id);
@@ -62,6 +79,10 @@ class OrderController extends Controller
         return response()->json($order, 200);
     }
 
+    /**
+     * DELETE /api/v1/orders/{id}
+     * Deletes an order from the database.
+     */
     public function destroy($id)
     {
         $order = Order::find($id);
@@ -75,6 +96,11 @@ class OrderController extends Controller
         return response()->json(null, 204);
     }
 
+    /**
+     * POST /api/v1/orders/{id}/pay
+     * Integration endpoint: The REST Service calls the SOAP payment service
+     * to process an order's payment.
+     */
     public function pay($id)
     {
         $order = Order::find($id);

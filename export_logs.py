@@ -23,6 +23,7 @@ REQUIRED_KEYS = [
 
 
 def main():
+    # Verify that the traffic generator successfully produced logs
     if not os.path.exists(LOG_FILE):
         print(f"ERROR: Log file not found at {LOG_FILE}")
         print("Run the traffic generator first!")
@@ -44,7 +45,7 @@ def main():
                 schema_issues += 1
                 continue
 
-            # Validate required keys
+            # Validate required keys to ensure the schema is stable for downstream ML ingestion
             missing = [k for k in REQUIRED_KEYS if k not in record]
             if missing:
                 print(f"  WARNING: Line {line_num} missing keys: {missing}")

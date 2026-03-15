@@ -7,11 +7,19 @@ use Illuminate\Support\Facades\DB;
 
 class ApiController extends Controller
 {
+    /**
+     * [LAB 1] Endpoint: /api/normal
+     * Simulates normal application behavior with a quick response.
+     */
     public function normal()
     {
         return response()->json(['status' => 'success', 'data' => 'Normal behavior']);
     }
 
+    /**
+     * [LAB 1] Endpoint: /api/slow
+     * Simulates a delayed response depending on the 'hard' query parameter.
+     */
     public function slow(Request $request)
     {
         if ($request->query('hard') == 1) {
@@ -22,11 +30,19 @@ class ApiController extends Controller
         return response()->json(['status' => 'success', 'data' => 'Delayed behavior']);
     }
 
+    /**
+     * [LAB 1] Endpoint: /api/error
+     * Simulates an unexpected server error by throwing a generic exception.
+     */
     public function error()
     {
         throw new \Exception("Simulated System Error");
     }
 
+    /**
+     * [LAB 1] Endpoint: /api/random
+     * Simulates random errors (20% chance of throwing an exception).
+     */
     public function random()
     {
         if (rand(1, 10) > 8)
@@ -34,6 +50,10 @@ class ApiController extends Controller
         return response()->json(['status' => 'success', 'data' => 'Random behavior']);
     }
 
+    /**
+     * [LAB 1] Endpoint: /api/db
+     * Simulates database interaction, capable of triggering a QueryException.
+     */
     public function db(Request $request)
     {
         if ($request->query('fail') == 1) {
@@ -45,6 +65,10 @@ class ApiController extends Controller
         return response()->json(['status' => 'success', 'data' => $data]);
     }
 
+    /**
+     * [LAB 1] Endpoint: /api/validate
+     * Simulates user input validation, expecting payload parameters.
+     */
     public function validateData(Request $request)
     {
         $request->validate([
@@ -55,6 +79,11 @@ class ApiController extends Controller
         return response()->json(['status' => 'success', 'data' => 'Valid input']);
     }
 
+    /**
+     * [LAB 1] Endpoint: /metrics
+     * Exposes metrics in Prometheus text-based exporter format by parsing 
+     * the local metrics.json file populated by TelemetryMiddleware.
+     */
     public function metrics()
     {
         $metricsFile = storage_path('framework/prom_metrics/metrics.json');

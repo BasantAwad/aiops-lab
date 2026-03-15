@@ -56,7 +56,10 @@ MAX_WORKERS              = 15        # Concurrent threads for slow requests
 
 
 def pick_endpoint(distribution):
-    """Weighted random selection based on distribution dict."""
+    """
+    Weighted random selection based on distribution dict.
+    This enables us to shape the traffic realistically (e.g., 70% normal, 15% slow).
+    """
     r = random.random()
     cumulative = 0.0
     for endpoint, weight in distribution.items():
@@ -67,7 +70,11 @@ def pick_endpoint(distribution):
 
 
 def make_request(endpoint, session):
-    """Send a single request to the chosen endpoint. Returns (endpoint, status_code)."""
+    """
+    Send a single request to the chosen endpoint. Returns (endpoint, status_code).
+    Simulates real-world traffic by calling our Laravel API endpoints.
+    A unique correlation ID (X-Request-Id) is generated and injected as a header to trace requests across logs.
+    """
     headers = {"X-Request-Id": "tg-" + str(random.randint(100000, 999999))}
 
     try:
@@ -107,7 +114,10 @@ def make_request(endpoint, session):
 
 
 def run_phase(name, duration_seconds, distribution, stats, executor):
-    """Run a traffic phase for the given duration using thread pool."""
+    """
+    Run a traffic phase for the given duration using thread pool.
+    Phase represents different states of the system (Base load vs Anomaly spike).
+    """
     print("")
     print("=" * 60)
     print("  Phase: " + name)
@@ -154,6 +164,14 @@ def run_phase(name, duration_seconds, distribution, stats, executor):
 
 
 def main():
+    """
+    Main execution flow for generating lab telemetry data.
+    Runs three phases: 
+    1) Normal base load.
+    2) Anomaly window (introduces an error spike).
+    3) Return to normal base load.
+    Finally exports a ground_truth.json summarizing the test.
+    """
     print("=" * 60)
     print("  AIOps Traffic Generator")
     print("  Target: " + BASE_URL)

@@ -19,8 +19,9 @@ print("Loading dataset...")
 df = pd.read_csv('aiops_dataset.csv')
 df['timestamp'] = pd.to_datetime(df['timestamp'])
 
-# We need to strictly train the model *only on normal behavior*.
-# We find the anomaly injection window from ground truth.
+# We need to strictly train the model *only on normal behavior* 
+# to establish a baseline of what healthy API traffic looks like.
+# We find the exact anomaly injection window from ground truth.
 with open('ground_truth.json', 'r') as f:
     gt = json.load(f)
     anomaly_start = pd.to_datetime(gt['anomaly_start_iso'])
@@ -38,8 +39,9 @@ features = [
 X_train = train_df[features]
 
 print(f"Training Isolation Forest on {len(X_train)} normal windows...")
-# Contamination is set to auto since theoretical normal data shouldn't have many outliers,
-# but we allow a tiny fraction for noise.
+# Contamination is set to 'auto' since theoretical normal data shouldn't have many outliers.
+# The Isolation Forest algorithm isolates observations by randomly selecting a feature and then 
+# randomly selecting a split value. Anomalies typically require fewer splits to be isolated.
 model = IsolationForest(contamination='auto', random_state=42)
 model.fit(X_train)
 
@@ -64,6 +66,7 @@ out_df.to_csv(out_file, index=False)
 print(f"Predictions saved to {out_file}")
 
 # Calculate Accuracy against ground truth
+# Compare our Isolation Forest unsupervised predictions against what we know was actually an anomaly
 gt_anomalies = df['is_anomaly'] # from build_dataset
 pred_anomalies = df['is_anomaly_pred']
 
@@ -77,6 +80,8 @@ print(f"False Positives (False alarms): {false_positives}")
 print(f"False Negatives (Missed anomaly windows): {false_negatives}")
 
 # VISUALIZATION
+# Graphing Latency and Error rates over time, highlighting detected anomalies 
+# in Red against the Ground Truth window in Orange.
 print("\nGenerating Visualizations...")
 
 plt.figure(figsize=(14, 6))

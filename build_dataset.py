@@ -38,6 +38,7 @@ window = '30s'
 print("Engineering features over 30s windows...")
 
 # We calculate features across ALL endpoints combined to find system-level anomalies
+# This allows the ML model to detect overall infrastructure degradation rather than just per-endpoint issues.
 features = []
 
 for t_start, window_df in df.groupby(pd.Grouper(freq=window)):
@@ -53,6 +54,8 @@ for t_start, window_df in df.groupby(pd.Grouper(freq=window)):
     request_rate = len(window_df) / 30.0  # requests per second in this window
     
     error_count = len(window_df[window_df['status_code'] >= 400])
+    error_count = len(window_df[window_df['status_code'] >= 400])
+    # Error rate is a strong indicator of system failure/anomalies
     error_rate = error_count / len(window_df) if len(window_df) > 0 else 0
     errors_per_window = error_count
     
@@ -96,6 +99,7 @@ try:
         
         # A window is anomalous if it overlaps the start/end bounds.
         # Window is [t, t + 30s]. Overlaps if: t < anomaly_end AND t + 30s > anomaly_start
+        # This accurate labeling provides the ground truth needed to evaluate ML accuracy later.
         dataset_df['is_anomaly'] = dataset_df['timestamp'].apply(
             lambda t: 1 if (t <= anomaly_end) and (t + pd.Timedelta(seconds=30) >= anomaly_start) else 0
         )
