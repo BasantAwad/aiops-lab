@@ -75,7 +75,10 @@ def make_request(endpoint, session):
     Simulates real-world traffic by calling our Laravel API endpoints.
     A unique correlation ID (X-Request-Id) is generated and injected as a header to trace requests across logs.
     """
-    headers = {"X-Request-Id": "tg-" + str(random.randint(100000, 999999))}
+    headers = {
+        "X-Request-Id": "tg-" + str(random.randint(100000, 999999)),
+        "Accept": "application/json"
+    }
 
     try:
         if endpoint == "normal":

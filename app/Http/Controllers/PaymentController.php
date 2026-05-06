@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
  */
 class PaymentService
 {
-    // This is the last lab "lab3,4"
 
     /**
      * SOAP Operation: processPayment

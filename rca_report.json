@@ -1,0 +1,158 @@
+{
+  "incident_id": "387860db-cf5b-4c25-a785-c82f910d6123",
+  "analysis_timestamp": "2026-05-06T06:07:24.570278",
+  "anomaly_window": {
+    "start": "2026-03-09 21:22:30+00:00",
+    "end": "2026-03-09 21:25:30+00:00",
+    "duration_seconds": 180.0,
+    "source": "Lab 3 Isolation Forest ML Detection + Lab 2 Rule-Based Incidents"
+  },
+  "root_cause_endpoint": "/api/error",
+  "primary_signal": "request_rate",
+  "signal_description": "Traffic share shifted from 4.4% to 36.3%",
+  "supporting_evidence": {
+    "endpoint_attribution": {
+      "/api/error": {
+        "attribution_score": 0.3176,
+        "error_rate_baseline": 100.0,
+        "error_rate_anomaly": 100.0,
+        "error_contribution_pct": 42.44,
+        "traffic_share_delta_pp": 31.88,
+        "latency_factor": 0.95
+      },
+      "/api/slow": {
+        "attribution_score": 0.171,
+        "error_rate_baseline": 65.71,
+        "error_rate_anomaly": 82.05,
+        "error_contribution_pct": 15.43,
+        "traffic_share_delta_pp": -5.11,
+        "latency_factor": 0.91
+      },
+      "/api/normal": {
+        "attribution_score": 0.1349,
+        "error_rate_baseline": 75.16,
+        "error_rate_anomaly": 75.16,
+        "error_contribution_pct": 37.94,
+        "traffic_share_delta_pp": -26.31,
+        "latency_factor": 1.03
+      },
+      "/api/db": {
+        "attribution_score": 0.0892,
+        "error_rate_baseline": 82.61,
+        "error_rate_anomaly": 77.78,
+        "error_contribution_pct": 2.25,
+        "traffic_share_delta_pp": -1.01,
+        "latency_factor": 1.02
+      },
+      "/api/validate": {
+        "attribution_score": 0.0774,
+        "error_rate_baseline": 90.0,
+        "error_rate_anomaly": 80.0,
+        "error_contribution_pct": 1.93,
+        "traffic_share_delta_pp": 0.55,
+        "latency_factor": 1.67
+      }
+    },
+    "error_category_breakdown": {
+      "DATABASE_ERROR": {
+        "baseline_pct": 0.61,
+        "anomaly_pct": 0.16,
+        "anomaly_count": 1,
+        "delta_pp": -0.45
+      },
+      "SYSTEM_ERROR": {
+        "baseline_pct": 99.39,
+        "anomaly_pct": 99.68,
+        "anomaly_count": 620,
+        "delta_pp": 0.29
+      },
+      "VALIDATION_ERROR": {
+        "baseline_pct": 0,
+        "anomaly_pct": 0.16,
+        "anomaly_count": 1,
+        "delta_pp": 0.16
+      }
+    },
+    "signal_comparison": {
+      "baseline": {
+        "total_requests": 661,
+        "avg_latency_ms": 164.702,
+        "p95_latency_ms": 875.0,
+        "max_latency_ms": 7015,
+        "request_rate_rps": 3.7135,
+        "error_rate": 0.7474,
+        "error_count": 494
+      },
+      "anomaly": {
+        "total_requests": 728,
+        "avg_latency_ms": 115.1126,
+        "p95_latency_ms": 13.65,
+        "max_latency_ms": 7019,
+        "request_rate_rps": 4.113,
+        "error_rate": 0.8544,
+        "error_count": 622
+      }
+    },
+    "ml_anomaly_scores": [
+      {
+        "timestamp": "2026-03-09 21:22:30+00:00",
+        "anomaly_score": -0.0383704740207077
+      },
+      {
+        "timestamp": "2026-03-09 21:23:00+00:00",
+        "anomaly_score": -0.0489570430881347
+      },
+      {
+        "timestamp": "2026-03-09 21:23:30+00:00",
+        "anomaly_score": -0.0069963016988253
+      },
+      {
+        "timestamp": "2026-03-09 21:24:00+00:00",
+        "anomaly_score": -0.019281351334621
+      },
+      {
+        "timestamp": "2026-03-09 21:24:30+00:00",
+        "anomaly_score": -0.0454650527340502
+      },
+      {
+        "timestamp": "2026-03-09 21:25:00+00:00",
+        "anomaly_score": -0.0402153351631379
+      }
+    ],
+    "correlated_incidents_count": 24
+  },
+  "confidence_score": 0.57,
+  "confidence_factors": {
+    "error_contribution_clarity": 0.8488745980707395,
+    "error_rate_spike_magnitude": 0.0,
+    "traffic_share_shift": 1.0,
+    "ml_detection_agreement": 1.0,
+    "incident_correlation": 0.0
+  },
+  "incident_timeline": {
+    "normal_state": {
+      "start": "2026-03-09 21:19:30+00:00",
+      "end": "2026-03-09 21:22:30+00:00",
+      "description": "System operating within normal parameters. Error rates, latency, and request rates are within baseline thresholds.",
+      "avg_error_rate": 74.74,
+      "avg_latency_ms": 164.7
+    },
+    "anomaly_start": {
+      "timestamp": "2026-03-09 21:22:30+00:00",
+      "description": "Anomaly onset detected. Sharp increase in traffic to /api/error with elevated error rates. SYSTEM_ERROR errors begin surging.",
+      "trigger_signal": "error_rate"
+    },
+    "peak_incident": {
+      "timestamp": "2026-03-09 21:22:30+00:00",
+      "description": "Peak degradation reached. Error rate hits 97.1%, /api/error endpoint contributing 42.4% of all errors.",
+      "peak_error_rate": 97.13,
+      "peak_latency_ms": 2.97
+    },
+    "recovery": {
+      "timestamp": "2026-03-09 21:25:30+00:00",
+      "end": "2026-03-09 21:28:30+00:00",
+      "description": "Error rates return to baseline levels. System recovers as anomalous traffic subsides. Latency normalizes within 1-2 minutes."
+    }
+  },
+  "recommended_action": "Investigate /api/error for SYSTEM_ERROR errors. The endpoint showed a 0pp error rate increase and contributed 42% of all errors during the anomaly window. Check application error handling, upstream dependencies, and resource limits for this endpoint. Implement circuit breakers and rate limiting to prevent cascading failures."
+}

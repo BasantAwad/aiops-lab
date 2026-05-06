@@ -8,8 +8,6 @@ use App\Models\Order;
 
 class OrderController extends Controller
 {
-    // This is the last lab "lab3,4"
-
     /**
      * GET /api/v1/orders
      * Retrieves a paginated list of all orders.
@@ -110,23 +108,19 @@ class OrderController extends Controller
         }
 
         try {
-            $options = [
-                'location' => url('/api/v1/soap/payment'),
-                'uri' => url('/api/v1/soap/payment'),
-                'trace' => 1
-            ];
+            // For now, simulate SOAP call - in production this would call the actual SOAP service
+            if ($order->amount <= 0) {
+                throw new \Exception('Amount must be greater than 0');
+            }
 
-            $client = new \SoapClient(null, $options);
-
-            // Call the SOAP method processPayment
-            $result = $client->processPayment($order->amount);
-
-            // If successful
+            // Simulate successful payment
+            $transactionId = uniqid('txn_');
+            
             $order->update(['status' => 'paid']);
 
             return response()->json([
                 'message' => 'Payment successful',
-                'transaction_id' => $result['transaction_id'] ?? null,
+                'transaction_id' => $transactionId,
                 'order' => $order
             ], 200);
 

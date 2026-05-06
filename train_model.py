@@ -2,13 +2,6 @@ import pandas as pd
 import numpy as np
 import json
 
-# ============================================================================
-# [LAB WORK 3] - ML Anomaly Detection
-# This script trains an Isolation Forest unsupervised machine learning model
-# exclusively on normal Baseline network behavior. It then predicts anomalies
-# on the full dataset and plots latency/error rate timeliness.
-# ============================================================================
-
 import numpy as np
 import json
 from sklearn.ensemble import IsolationForest
@@ -19,9 +12,6 @@ print("Loading dataset...")
 df = pd.read_csv('aiops_dataset.csv')
 df['timestamp'] = pd.to_datetime(df['timestamp'])
 
-# We need to strictly train the model *only on normal behavior* 
-# to establish a baseline of what healthy API traffic looks like.
-# We find the exact anomaly injection window from ground truth.
 with open('ground_truth.json', 'r') as f:
     gt = json.load(f)
     anomaly_start = pd.to_datetime(gt['anomaly_start_iso'])
@@ -39,9 +29,6 @@ features = [
 X_train = train_df[features]
 
 print(f"Training Isolation Forest on {len(X_train)} normal windows...")
-# Contamination is set to 'auto' since theoretical normal data shouldn't have many outliers.
-# The Isolation Forest algorithm isolates observations by randomly selecting a feature and then 
-# randomly selecting a split value. Anomalies typically require fewer splits to be isolated.
 model = IsolationForest(contamination='auto', random_state=42)
 model.fit(X_train)
 

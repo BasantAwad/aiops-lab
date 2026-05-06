@@ -9,6 +9,5 @@ class Order extends Model
 {
     use HasFactory;
 
-    // This is for the last lab "lab3,4"
     protected $fillable = ['customer_name', 'amount', 'status'];
 }

@@ -42,7 +42,7 @@ for i in range(total_windows):
         elif ep == '/api/validate':
             if random.random() < 0.02:
                 status_code = 422
-                error_category = "VALIDATION_FAILED"
+                error_category = "VALIDATION_ERROR"
                 
         current_ts += timedelta(seconds=30 / num_reqs)
         

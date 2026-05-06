@@ -1,66 +1,93 @@
-# AIOps Observability API
+# AIOps Observability and Detection Labs
 
-This repository houses a Laravel-based API serving as a testbed for advanced observability and AIOps telemetry. The application emits ML-ready structured logs, exposes Prometheus RED (Rate, Errors, Duration) metrics, and is accompanied by a full monitoring stack capable of detecting controlled anomaly injections.
+This repository contains an end-to-end AIOps project, structured into three progressive labs. We start by building a telemetry-aware API, then implement a rule-based detection engine, and finally use Machine Learning to predict and isolate anomalies.
 
-## System Architecture
+## Prerequisites
+- PHP & Composer
+- Docker & Docker Compose
+- Python (with dependencies installed)
 
-The project consists of three main components:
+---
 
-1.  **Laravel API**:
-    - Powered by a custom `TelemetryMiddleware` that intercepts every incoming request and outgoing response.
-    - Generates a highly structured, stable JSON log schema (found in `storage/logs/aiops.log`) containing standard HTTP context (method, path, user agent, IP), latency calculations, exact payload sizes, and correlation IDs.
-    - Utilizes a central `categorizeError` function within the Exception handler to group diverse application faults into easily digestible categories for ML algorithms (`DATABASE_ERROR`, `TIMEOUT_ERROR`, `VALIDATION_ERROR`, `SYSTEM_ERROR`).
-    - Exposes a `/metrics` endpoint rendering cumulative histogram buckets for Prometheus scraping.
+## Lab 1: AIOps Observability
 
-2.  **Monitoring Stack**:
-    - **Prometheus**: Scrapes the `/metrics` endpoint every 5 seconds, capturing throughput, localized error rates, and histogram-based latency metrics.
-    - **Grafana**: Provides real-time visualization of the system's health, pre-configured with a dashboard to monitor Request per Second (RPS), Error Percentages, Latency Percentiles (P50/P95/P99), and stacked error breakdowns.
+In this lab, we build a Laravel-based API that serves as a testbed for advanced observability. The application emits ML-ready structured logs and exposes Prometheus RED (Rate, Errors, Duration) metrics.
 
-3.  **Traffic Generator**:
-    - A multi-threaded Python script (`traffic_generator.py`) capable of simulating sustained base load across all endpoints.
-    - Capable of injecting strict, time-bounded anomalies (e.g., an "Error Spike") to validate the monitoring pipeline's detection capabilities.
-    - Records actual execution timestamps into a `ground_truth.json` file for comparison against dashboard findings.
+### Features
+- **TelemetryMiddleware**: Intercepts requests/responses, calculates latency, and injects correlation IDs. Logs are saved to `storage/logs/aiops.log` in structured JSON format.
+- **Centralized Error Categorization**: Groups application faults into categories like `DATABASE_ERROR`, `TIMEOUT_ERROR`, `VALIDATION_ERROR`, and `SYSTEM_ERROR`.
+- **Metrics Endpoint**: Exposes a `/metrics` URL for Prometheus scraping.
 
-## Available API Endpoints
+### Available API Endpoints (Lab 1)
+| Endpoint | Method | Behavior / Failure Mode |
+| :--- | :--- | :--- |
+| `/api/normal` | GET | Simulates standard, healthy traffic (always returns 200 OK fast). |
+| `/api/slow` | GET | Simulates API degradation (random sleep between 1-3 seconds). |
+| `/api/slow?hard=1` | GET | Simulates severe degradation (random sleep 5-7 seconds) and triggers `TIMEOUT_ERROR`. |
+| `/api/error` | GET | Throws a generic Exception (returns 500, logs `SYSTEM_ERROR`). |
+| `/api/db` | GET | Queries a `dummy_data` table natively. |
+| `/api/db?fail=1` | GET | Forces a database failure (returns 500, logs `DATABASE_ERROR`). |
+| `/api/validate` | POST | Expects `{"email": "...", "age": X}`. Rejects invalid formats (logging `VALIDATION_ERROR`). |
 
-The API is intentionally designed to exhibit various stable and unstable behaviors:
+### How to Run Lab 1
+1. **Start the Database & API:**
+   ```bash
+   composer install
+   php artisan migrate
+   php artisan serve
+   ```
+2. **Start Monitoring Stack (Prometheus + Grafana):**
+   ```bash
+   docker-compose up -d
+   ```
+   *(Grafana is available at `http://localhost:3000` with admin/admin).*
+   
+3. **Generate Traffic & Anomalies:**
+   Use the Python load generator to simulate traffic. 
+   *(Note: Since your `.venv` is missing an `activate` script, you must run the Python executable directly like this):*
+   ```powershell
+   .\.venv\Scripts\python.exe traffic_generator.py
+   ```
+   *(This script will create a `ground_truth.json` file logging the anomaly timestamps).*
 
-| Endpoint           | Method | Behavior / Failure Mode                                                                                                                                        |
-| :----------------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/api/normal`      | GET    | Simulates standard, healthy traffic (always returns 200 OK fast).                                                                                              |
-| `/api/slow`        | GET    | Simulates API degradation (random sleep between 1-3 seconds).                                                                                                  |
-| `/api/slow?hard=1` | GET    | Simulates severe degradation (random sleep between 5-7 seconds). Will trigger a `TIMEOUT_ERROR` classification in logs even on a 200 OK.                       |
-| `/api/error`       | GET    | Hardcoded to throw a generic `Exception` (returns 500, logs `SYSTEM_ERROR`).                                                                                   |
-| `/api/db`          | GET    | Queries a `dummy_data` table natively.                                                                                                                         |
-| `/api/db?fail=1`   | GET    | Forces a database failure by querying a non-existent table (returns 500, logs `DATABASE_ERROR`).                                                               |
-| `/api/validate`    | POST   | Expects JSON payload `{"email": "...", "age": X}`. Rejects invalid formats (e.g., age <= 0 or missing fields), returning a 422 and logging `VALIDATION_ERROR`. |
+---
 
-## Getting Started
+## Lab 2: AIOps Detection Engine
 
-### 1. Run the Laravel Application
+In this lab, we created an active detection engine. Instead of passive monitoring on dashboards, this engine continuously queries Prometheus strictly to identify anomalies and correlate signals into higher-level incidents, avoiding alert fatigue.
 
-Install dependencies and run the database migrations (required for `/api/db`):
+### Features
+- **Baseline Modeling**: Dynamically computes average latency, request rates, and error rates using Prometheus.
+- **Multi-Signal Detection**: Identifies performance degradation by combining signals (latency + error rates).
+- **Incident Generation**: Correlates anomalies and writes structured incidents to `storage/aiops/incidents.json`.
 
-```bash
-composer install
-php artisan migrate
-php artisan serve
-```
+### How to Run Lab 2
+1. Ensure the Lab 1 API (`php artisan serve`) and Docker containers are already running.
+2. Open a new terminal and start the continuous detection command:
+   ```bash
+   php artisan aiops:detect
+   ```
+3. With this running, if you execute the Lab 1 `traffic_generator.py`, the detection engine will pick up the real-time anomaly, output it to the console, and generate standard incidents in `storage/aiops/incidents.json`.
 
-### 2. Start the Monitoring Features
+---
 
-Ensure Docker is running, then spin up Promtheus and Grafana:
+## Lab 3: ML Anomaly Detection
 
-```bash
-docker-compose up -d
-```
+We shift from rule-based thresholds to Machine Learning. This lab extracts historical telemetry to train an Unsupervised Machine Learning model that detects anomalous system behavior based solely on observed metrics.
 
-You can view Grafana at `http://localhost:3000` (Default login: `admin` / `admin`).
+### Features
+- **Dataset Generation**: Parses logs and Prometheus metrics into `aiops_dataset.csv`.
+- **Feature Engineering**: Calculates rolling averages, error rates, and standard deviations over time windows.
+- **Model Training**: Uses an Anomaly Detection model to rank normal vs abnormal operation.
 
-### 3. Generate Traffic
-
-Run the Python load generator to simulate realistic traffic patterns across the API endpoints:
-
-```bash
-python traffic_generator.py
-```
+### How to Run Lab 3
+1. **Export Logs (Dataset Construction):**
+   *(Ensure you have run the traffic generator in Lab 1 sufficiently to generate logs).*
+   ```powershell
+   .\.venv\Scripts\python.exe build_dataset.py
+   ```
+2. **Train the ML Model:**
+   ```powershell
+   .\.venv\Scripts\python.exe train_model.py
+   ```
+   *(This outputs `anomaly_predictions.csv` and visualization charts like `latency_timeline.png`).*
