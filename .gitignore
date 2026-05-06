@@ -16,3 +16,17 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Laravel Runtime
+database.sqlite
+/storage/framework/sessions/*
+!/storage/framework/sessions/.gitignore
+/storage/framework/views/*
+!/storage/framework/views/.gitignore
+/storage/logs/*.log
+!/storage/logs/.gitignore
