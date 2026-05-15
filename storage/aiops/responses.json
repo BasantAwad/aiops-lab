@@ -228,5 +228,235 @@
         "timestamp": "2026-05-06T03:18:06+00:00",
         "result": "success",
         "notes": "Rate limiting enabled on 1 endpoint(s). Max 10 req/s per client enforced."
+    },
+    {
+        "response_id": "c7a64cf8-cf20-4e6f-baa9-cda03732e51e",
+        "incident_id": "0711eebe-5f27-4254-a6ae-20e356ab3c6b",
+        "incident_type": "SERVICE_DEGRADATION",
+        "severity": "critical",
+        "action_taken": "send_alert",
+        "timestamp": "2026-05-09T11:23:45+00:00",
+        "result": "success",
+        "notes": "Alert dispatched to 'ops-team' channel. Affected: /api/normal, /api/slow, /api/db, /api/error, /api/validate. Severity: critical."
+    },
+    {
+        "response_id": "0a08349e-4b7f-473a-9274-66ffece45683",
+        "incident_id": "0711eebe-5f27-4254-a6ae-20e356ab3c6b",
+        "incident_type": "SERVICE_DEGRADATION",
+        "severity": "critical",
+        "action_taken": "restart_service",
+        "timestamp": "2026-05-09T11:23:45+00:00",
+        "result": "success",
+        "notes": "Service 'php-fpm' restarted successfully. PID recycled, worker pool re-initialized."
+    },
+    {
+        "response_id": "92aea001-bfd3-494f-abdc-2564d408386c",
+        "incident_id": "0711eebe-5f27-4254-a6ae-20e356ab3c6b",
+        "incident_type": "SERVICE_DEGRADATION",
+        "severity": "critical",
+        "action_taken": "throttle_traffic",
+        "timestamp": "2026-05-09T11:23:45+00:00",
+        "result": "success",
+        "notes": "Rate limiting enabled on 5 endpoint(s). Max 10 req/s per client enforced."
+    },
+    {
+        "response_id": "eacd4984-0029-430d-8cd4-6a41b8fffa51",
+        "incident_id": "386fac3a-102a-49be-9922-847f1df1cc9a",
+        "incident_type": "SERVICE_DEGRADATION",
+        "severity": "critical",
+        "action_taken": "send_alert",
+        "timestamp": "2026-05-09T11:23:45+00:00",
+        "result": "success",
+        "notes": "Alert dispatched to 'ops-team' channel. Affected: /api/normal, /api/slow, /api/db, /api/error. Severity: critical."
+    },
+    {
+        "response_id": "6b7fe2a2-3874-4186-aefe-a9878c966c76",
+        "incident_id": "386fac3a-102a-49be-9922-847f1df1cc9a",
+        "incident_type": "SERVICE_DEGRADATION",
+        "severity": "critical",
+        "action_taken": "restart_service",
+        "timestamp": "2026-05-09T11:23:45+00:00",
+        "result": "success",
+        "notes": "Service 'php-fpm' restarted successfully. PID recycled, worker pool re-initialized."
+    },
+    {
+        "response_id": "7c50fad4-863e-490d-b0b7-49d43c153a9c",
+        "incident_id": "386fac3a-102a-49be-9922-847f1df1cc9a",
+        "incident_type": "SERVICE_DEGRADATION",
+        "severity": "critical",
+        "action_taken": "throttle_traffic",
+        "timestamp": "2026-05-09T11:23:45+00:00",
+        "result": "success",
+        "notes": "Rate limiting enabled on 4 endpoint(s). Max 10 req/s per client enforced."
+    },
+    {
+        "response_id": "87d82b09-af0e-4733-8b42-ee49894cfa75",
+        "incident_id": "e5e586ed-e47e-4f65-9004-f89b7069c221",
+        "incident_type": "ERROR_STORM",
+        "severity": "error",
+        "action_taken": "send_alert",
+        "timestamp": "2026-05-09T11:23:45+00:00",
+        "result": "success",
+        "notes": "Alert dispatched to 'ops-team' channel. Affected: /api/error. Severity: error."
+    },
+    {
+        "response_id": "b97a679e-485c-4ed7-8414-5aabe9192e10",
+        "incident_id": "e5e586ed-e47e-4f65-9004-f89b7069c221",
+        "incident_type": "ERROR_STORM",
+        "severity": "error",
+        "action_taken": "throttle_traffic",
+        "timestamp": "2026-05-09T11:23:45+00:00",
+        "result": "success",
+        "notes": "Rate limiting enabled on 1 endpoint(s). Max 10 req/s per client enforced."
+    },
+    {
+        "response_id": "4dc7608b-b15a-43f1-9e65-15e741bc9e64",
+        "incident_id": "eda01a3f-ac66-4e68-8510-86e1957941f8",
+        "incident_type": "SERVICE_DEGRADATION",
+        "severity": "critical",
+        "action_taken": "send_alert",
+        "timestamp": "2026-05-09T11:23:46+00:00",
+        "result": "success",
+        "notes": "Alert dispatched to 'ops-team' channel. Affected: /api/slow, /api/db, /api/error, /api/validate. Severity: critical."
+    },
+    {
+        "response_id": "28775c47-dee4-4d20-b3da-ca0d216a45c5",
+        "incident_id": "eda01a3f-ac66-4e68-8510-86e1957941f8",
+        "incident_type": "SERVICE_DEGRADATION",
+        "severity": "critical",
+        "action_taken": "restart_service",
+        "timestamp": "2026-05-09T11:23:46+00:00",
+        "result": "success",
+        "notes": "Service 'php-fpm' restarted successfully. PID recycled, worker pool re-initialized."
+    },
+    {
+        "response_id": "be931706-f010-4a62-a573-b9524a857790",
+        "incident_id": "eda01a3f-ac66-4e68-8510-86e1957941f8",
+        "incident_type": "SERVICE_DEGRADATION",
+        "severity": "critical",
+        "action_taken": "throttle_traffic",
+        "timestamp": "2026-05-09T11:23:46+00:00",
+        "result": "success",
+        "notes": "Rate limiting enabled on 4 endpoint(s). Max 10 req/s per client enforced."
+    },
+    {
+        "response_id": "c04b705d-31e4-4c17-82d7-c6b20e8bad1a",
+        "incident_id": "2ef72d76-bd9e-491a-b534-b67b3a92e2a3",
+        "incident_type": "SERVICE_DEGRADATION",
+        "severity": "critical",
+        "action_taken": "send_alert",
+        "timestamp": "2026-05-09T11:23:46+00:00",
+        "result": "success",
+        "notes": "Alert dispatched to 'ops-team' channel. Affected: /api/normal, /api/slow, /api/db, /api/validate. Severity: critical."
+    },
+    {
+        "response_id": "b4e08172-2753-4ca6-8bd8-c3029363c4a3",
+        "incident_id": "2ef72d76-bd9e-491a-b534-b67b3a92e2a3",
+        "incident_type": "SERVICE_DEGRADATION",
+        "severity": "critical",
+        "action_taken": "restart_service",
+        "timestamp": "2026-05-09T11:23:46+00:00",
+        "result": "success",
+        "notes": "Service 'php-fpm' restarted successfully. PID recycled, worker pool re-initialized."
+    },
+    {
+        "response_id": "cedfadf5-48cf-48c6-9713-5d14c611ee3f",
+        "incident_id": "2ef72d76-bd9e-491a-b534-b67b3a92e2a3",
+        "incident_type": "SERVICE_DEGRADATION",
+        "severity": "critical",
+        "action_taken": "throttle_traffic",
+        "timestamp": "2026-05-09T11:23:46+00:00",
+        "result": "success",
+        "notes": "Rate limiting enabled on 4 endpoint(s). Max 10 req/s per client enforced."
+    },
+    {
+        "response_id": "0d15d12a-062d-4d20-8de8-e75fab35b49b",
+        "incident_id": "3b20f032-1215-4fc1-9e3c-5406118eba2f",
+        "incident_type": "SERVICE_DEGRADATION",
+        "severity": "critical",
+        "action_taken": "send_alert",
+        "timestamp": "2026-05-09T11:23:46+00:00",
+        "result": "success",
+        "notes": "Alert dispatched to 'ops-team' channel. Affected: /api/normal, /api/slow, /api/error, /api/validate. Severity: critical."
+    },
+    {
+        "response_id": "1adb1b9b-a83d-4649-ac93-cb90334bbdf0",
+        "incident_id": "3b20f032-1215-4fc1-9e3c-5406118eba2f",
+        "incident_type": "SERVICE_DEGRADATION",
+        "severity": "critical",
+        "action_taken": "restart_service",
+        "timestamp": "2026-05-09T11:23:46+00:00",
+        "result": "success",
+        "notes": "Service 'php-fpm' restarted successfully. PID recycled, worker pool re-initialized."
+    },
+    {
+        "response_id": "8257cc4c-c32f-4074-9f4f-0e06eda4ddbc",
+        "incident_id": "3b20f032-1215-4fc1-9e3c-5406118eba2f",
+        "incident_type": "SERVICE_DEGRADATION",
+        "severity": "critical",
+        "action_taken": "throttle_traffic",
+        "timestamp": "2026-05-09T11:23:46+00:00",
+        "result": "success",
+        "notes": "Rate limiting enabled on 4 endpoint(s). Max 10 req/s per client enforced."
+    },
+    {
+        "response_id": "65a45443-99b3-454e-bc5b-86e5a8c8d9ce",
+        "incident_id": "e031d93f-0707-48bb-bb8f-19d608248dcd",
+        "incident_type": "ERROR_STORM",
+        "severity": "error",
+        "action_taken": "send_alert",
+        "timestamp": "2026-05-09T11:23:46+00:00",
+        "result": "success",
+        "notes": "Alert dispatched to 'ops-team' channel. Affected: /api/db. Severity: error."
+    },
+    {
+        "response_id": "26ad2cef-0679-497c-84e4-bde47efe5cf9",
+        "incident_id": "e031d93f-0707-48bb-bb8f-19d608248dcd",
+        "incident_type": "ERROR_STORM",
+        "severity": "error",
+        "action_taken": "throttle_traffic",
+        "timestamp": "2026-05-09T11:23:46+00:00",
+        "result": "success",
+        "notes": "Rate limiting enabled on 1 endpoint(s). Max 10 req/s per client enforced."
+    },
+    {
+        "response_id": "be811102-db75-4b97-9639-b47825a1d3fc",
+        "incident_id": "343c11b0-d1f3-4aeb-8cb7-2a0ebb34a139",
+        "incident_type": "ERROR_STORM",
+        "severity": "error",
+        "action_taken": "send_alert",
+        "timestamp": "2026-05-09T11:23:46+00:00",
+        "result": "success",
+        "notes": "Alert dispatched to 'ops-team' channel. Affected: /api/validate. Severity: error."
+    },
+    {
+        "response_id": "935c0b4a-a116-4928-a9e5-9c288b58cf53",
+        "incident_id": "343c11b0-d1f3-4aeb-8cb7-2a0ebb34a139",
+        "incident_type": "ERROR_STORM",
+        "severity": "error",
+        "action_taken": "throttle_traffic",
+        "timestamp": "2026-05-09T11:23:47+00:00",
+        "result": "success",
+        "notes": "Rate limiting enabled on 1 endpoint(s). Max 10 req/s per client enforced."
+    },
+    {
+        "response_id": "bfab8760-57ca-4792-ab34-6a503e9dfaf3",
+        "incident_id": "657f75c7-c833-4434-ad41-0d5d34f2676b",
+        "incident_type": "ERROR_STORM",
+        "severity": "error",
+        "action_taken": "send_alert",
+        "timestamp": "2026-05-09T11:23:47+00:00",
+        "result": "success",
+        "notes": "Alert dispatched to 'ops-team' channel. Affected: /api/normal. Severity: error."
+    },
+    {
+        "response_id": "ba63b962-90ad-4295-a3d0-7abb77767f02",
+        "incident_id": "657f75c7-c833-4434-ad41-0d5d34f2676b",
+        "incident_type": "ERROR_STORM",
+        "severity": "error",
+        "action_taken": "throttle_traffic",
+        "timestamp": "2026-05-09T11:23:47+00:00",
+        "result": "success",
+        "notes": "Rate limiting enabled on 1 endpoint(s). Max 10 req/s per client enforced."
     }
 ]
