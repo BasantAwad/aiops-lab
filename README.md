@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/BasantAwad/BasantAwad/main/assets/basant-terminal-banner.png" alt="Terminal-inspired project banner" width="100%" />
-</p>
+<p align="center"><img src="https://raw.githubusercontent.com/BasantAwad/BasantAwad/main/assets/profile-terminal.svg" alt="Animated terminal profile for Basant Awad Mohamed" width="100%" /></p>
 
 # AIOps Observability Lab
 
