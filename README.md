@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/BasantAwad/BasantAwad/main/assets/basant-terminal-banner.png" alt="Terminal-inspired project banner" width="100%" />
+</p>
+
 # AIOps Observability Lab
 
 A progressive AIOps platform that moves from telemetry-aware APIs to anomaly detection, root-cause analysis, and automated incident response.
