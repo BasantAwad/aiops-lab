@@ -1,4 +1,13 @@
-<p align="center"><img src="https://raw.githubusercontent.com/BasantAwad/BasantAwad/main/assets/profile-terminal.svg" alt="Animated terminal profile for Basant Awad Mohamed" width="100%" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/BasantAwad/BasantAwad/main/assets/introduction-banner.svg" alt="Terminal-inspired project banner" width="100%" /></p>
+
+<!-- terminal-badges -->
+<p align="center">
+  <img src="https://img.shields.io/badge/AIOps-8B5CF6?style=flat-square&logo=prometheus&logoColor=white" alt="AIOps" />
+  <img src="https://img.shields.io/badge/Prometheus-E6522C?style=flat-square&logo=prometheus&logoColor=white" alt="Prometheus" />
+  <img src="https://img.shields.io/badge/Grafana-F46800?style=flat-square&logo=grafana&logoColor=white" alt="Grafana" />
+</p>
+
+<p align="center"><img src="https://raw.githubusercontent.com/BasantAwad/BasantAwad/main/assets/introduction-banner.svg" alt="Animated terminal profile for Basant Awad Mohamed" width="100%" /></p>
 
 # AIOps Observability Lab
 
